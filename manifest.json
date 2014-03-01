@@ -1,0 +1,42 @@
+{
+    "manifest_version": 2,
+
+    "name": "Chrome Connected TV",
+    "description": "This extension provides you an easy way to run and debug HbbTV applications on your favorite browser.",
+    "version": "0.1",
+
+    "permissions": [
+        "activeTab"
+    ],
+
+    "browser_action": {
+        "default_icon": {
+            "19": "img/icon19.png",
+            "38": "img/icon38.png"
+        },
+        "default_title": "Let's make current page connected!"
+    },
+
+    "background": {
+        "scripts": [ "js/background.js" ],
+        "persistent": false
+    },
+
+    "content_scripts": [
+        {
+            "matches": [ "file://*/*", "http://*/*", "https://*/*" ],
+            "js": [ "js/documentStart.js" ],
+            "run_at": "document_start",
+            "css": [ "css/main.css" ]
+        },
+        {
+            "matches": [ "file://*/*", "http://*/*", "https://*/*" ],
+            "js": [ "js/documentIdle.js" ],
+            "run_at": "document_idle"
+        }
+    ],
+
+    "web_accessible_resources": [
+        "img/*.png"
+    ]
+}
